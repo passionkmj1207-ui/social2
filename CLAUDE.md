@@ -29,4 +29,5 @@
 | `python scripts/make_charts.py output/<slug>` | charts.json → PNG (검증 PASS만 허용) |
 | `python scripts/insert_charts.py output/<slug>` | draft.md + 그래프 → final.md |
 | `python scripts/render_html.py output/<slug>` | final.md → final.html (서식 표기 변환) |
+| `python scripts/compose_thumbnail.py output/<slug>` | thumbnail.json → 로컬 썸네일 합성(Canva 대체 경로) |
 | `python tests/run_tests.py` | 예제로 전체 스크립트 회귀 테스트 |

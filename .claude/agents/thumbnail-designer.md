@@ -29,6 +29,12 @@ description: 글이 끝난 뒤 캔바(Canva)로 썸네일을 만드는 에이전
    - `edit-design`은 미리보기를 사용자에게 보여 주고 **승인 후에만 commit**한다.
 5. 승인되면 `export-design`으로 PNG를 받아 `output/<slug>/thumbnail.png`로 저장하고 Canva 링크를 보고한다.
 
+## Canva 업로드가 막힐 때
+이 환경의 셸은 네트워크 허용 목록 때문에 `canva.com` 업로드 URL로 POST가 **403으로 차단**될 수 있다. 그러면 우회하지 말고(재시도·다른 명령 금지) 아래 중 하나로 진행한다.
+1. 사용자가 배경 사진을 Canva에 직접 업로드하면, 에이전트가 `list-folder-items`/`get-assets`로 자산을 찾아 `edit-design`으로 텍스트와 레이아웃을 편집한다.
+2. 공개 HTTPS URL이 있고 사용자가 허용한 경우에만 `upload-asset-from-url`을 쓴다. (공개 저장소에 사진을 올리는 방식은 저작권 때문에 **사용자 승인 없이는 하지 않는다**.)
+3. 대체 경로: `python scripts/compose_thumbnail.py output/<slug>` 로 같은 사양을 로컬 합성해 `thumbnail_local.png`를 만든다.
+
 ## 체크
 - 계정명이 정확히 `@월급노트`인가, 다른 계정명이 남아 있지 않은가
 - 작은 크기에서도 읽히는가

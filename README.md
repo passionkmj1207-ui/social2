@@ -38,6 +38,7 @@ python scripts/validate_claims.py output/<slug> [--strict] [--require-pass]
 python scripts/make_charts.py     output/<slug> [--allow-secondary]
 python scripts/insert_charts.py   output/<slug>
 python scripts/render_html.py     output/<slug> [--inline-images]
+python scripts/compose_thumbnail.py output/<slug>   # Canva를 못 쓸 때 대체
 python tests/run_tests.py          # examples/hangang-belt 로 회귀 테스트
 ```
 
