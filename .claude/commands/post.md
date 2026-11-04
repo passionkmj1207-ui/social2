@@ -23,8 +23,14 @@ argument-hint: <주제 | 화제의 원글 요약 | 슬러그>
 - **게이트 3**: `final.md`, `final.html` 생성, PNG를 눈으로 확인.
 
 ## 4. 썸네일 (`thumbnail-designer` 에이전트)
-- 3단계가 끝난 뒤에만 실행한다. Canva로 정사각형 썸네일 제작, 계정명 `@월급노트`.
-- 사용자 승인 후 저장하고 PNG를 내보낸다.
+- 3단계가 끝난 뒤에만 실행한다. **글의 내용을 관통하는 배경**을 Canva로 생성하고, 정사각형 썸네일에 헤드라인과 `@월급노트`를 넣는다.
+- 미리보기 확인 후 저장한다.
 
-## 5. 마무리 보고
-- 최종 산출물 경로(`final.md`, `final.html`, `charts/`, `thumbnail.png`), 검증 요약(PASS/PASS_SECONDARY 개수), 사람이 발행 전에 확인할 항목(단일 출처 수치, 직접 계산 값, 캡처 식별 정보)을 짧게 보고한다.
+## 5. 최종 결과물 HTML
+```bash
+python scripts/build_html.py output/<slug> --thumb-link "Canva에서 열기(원본 1080×1080)=<Canva URL>"
+```
+- **최종 결과물은 `output/<slug>/result.html` 한 파일**이다. 제목·썸네일·본문·그래프 이미지를 담고, [본문 복사] 버튼으로 네이버 블로그에 그대로 붙여넣을 수 있으며, 이미지마다 [다운로드] 버튼이 있다.
+
+## 6. 마무리 보고
+- `result.html` 경로, 검증 요약(PASS/PASS_SECONDARY 개수), 사람이 발행 전에 확인할 항목(단일 출처 수치, 직접 계산 값, 캡처 식별 정보)을 짧게 보고한다.

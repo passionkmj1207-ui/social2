@@ -11,10 +11,10 @@
 ```
 - 정의: `.claude/agents/*.md`, 오케스트레이션: `.claude/commands/post.md`
 - 작업 폴더: `output/<slug>/` (git 제외)
-  - `brief.md` → `draft.md` + `claims.json` → `verification.json` → `charts.json` + `charts/*.png` → `final.md`/`final.html` → `thumbnail.json` + `thumbnail.png`
+  - `brief.md` → `draft.md` + `claims.json` → `verification.json` → `charts.json` + `charts/*.png` → `final.md`/`final.html` → `thumbnail.json` + `thumbnail.png` → **`result.html`(최종 결과물)**
 
 ## 규칙
-- 글은 `guidelines/writing-guide.md`를 따른다. 썸네일은 `guidelines/thumbnail-guide.md`.
+- 글은 `guidelines/writing-guide.md`를 따른다. 썸네일은 `guidelines/thumbnail-guide.md`. 썸네일 배경은 글의 내용에 맞는 장면이어야 한다.
 - **본문의 모든 수치는 `claims.json`에 기록하고 fact-checker를 통과해야 한다.** 통과하지 못한 수치는 쓰지 않는다.
 - 그래프는 검증을 통과(`PASS`)한 수치로만 만든다.
 - 현재 시점 통계는 반드시 검색으로 확인한다. 기억으로 쓰지 않는다.
@@ -28,6 +28,7 @@
 | `python scripts/validate_claims.py output/<slug>` | claims 구조·계산식·문구 존재 검사, 미등록 숫자 경고 |
 | `python scripts/make_charts.py output/<slug>` | charts.json → PNG (검증 PASS만 허용) |
 | `python scripts/insert_charts.py output/<slug>` | draft.md + 그래프 → final.md |
-| `python scripts/render_html.py output/<slug>` | final.md → final.html (서식 표기 변환) |
+| `python scripts/render_html.py output/<slug>` | final.md → final.html (서식 표기 변환, 중간 산출물) |
+| `python scripts/build_html.py output/<slug>` | **최종 결과물 result.html**: 제목·썸네일·본문·그래프, 네이버용 복사 버튼, 이미지별 다운로드 버튼 |
 | `python scripts/compose_thumbnail.py output/<slug>` | thumbnail.json → 로컬 썸네일 합성(Canva 대체 경로) |
 | `python tests/run_tests.py` | 예제로 전체 스크립트 회귀 테스트 |

@@ -15,13 +15,14 @@
 | ① 초안 | `writer` | `draft.md`, `claims.json`, `writer_notes.md` | `validate_claims.py` 오류 0 |
 | ② 검증 | `fact-checker` | `verification.json`, `verification_report.md` | `overall == PASS` |
 | ③ 그래프 | `chart-creator` | `charts.json`, `charts/*.png`, `final.md`, `final.html` | 검증 PASS 수치만 사용 |
-| ④ 썸네일 | `thumbnail-designer` | `thumbnail.json`, `thumbnail.png` | 사용자 승인 후 저장 |
+| ④ 썸네일 | `thumbnail-designer` | `thumbnail.json`, `thumbnail.png` | 배경이 글 내용과 맞을 것, 미리보기 확인 후 저장 |
+| ⑤ 최종 | `build_html.py` | **`result.html`** (최종 결과물) | 제목·썸네일·본문·그래프를 한 파일로 |
 
 ## 핵심 설계
 - **수치 장부(`claims.json`)**: 본문의 모든 숫자를 출처·기준 시점과 함께 기록한다. 직접 계산한 값은 `formula`로 남기고 스크립트가 재계산해 대조한다.
 - **독립 검증**: 수치검증 에이전트는 작가의 출처를 믿지 않고 원출처에서 다시 확인한다. 판정은 `PASS`(원자료 또는 독립 2개 출처) / `PASS_SECONDARY`(단일 매체) / `FIX` / `FAIL`.
 - **그래프 게이트**: 그래프의 모든 점은 `claim_id`에 연결되고, 값이 장부와 다르거나 판정이 `PASS`가 아니면 생성이 중단된다(`--allow-secondary`로만 단일 매체 수치 허용).
-- **서식 표기**: `==노랑==`, `[빨강: …]`, `**볼드**` → `render_html.py`가 실제 서식으로 변환해 네이버 에디터 붙여넣기용 HTML을 만든다.
+- **서식 표기**: `==노랑==`, `[빨강: …]`, `**볼드**` → `md_render.py`가 인라인 스타일로 변환한다. **최종 결과물은 `result.html` 한 파일**이며, [본문 복사] 버튼으로 네이버 블로그에 그대로 붙여넣고, 이미지(썸네일·그래프)마다 [다운로드] 버튼이 있다.
 
 ## 사용법
 
@@ -37,7 +38,8 @@ pip install -r requirements.txt
 python scripts/validate_claims.py output/<slug> [--strict] [--require-pass]
 python scripts/make_charts.py     output/<slug> [--allow-secondary]
 python scripts/insert_charts.py   output/<slug>
-python scripts/render_html.py     output/<slug> [--inline-images]
+python scripts/render_html.py     output/<slug> [--inline-images]   # final.html (중간 산출물)
+python scripts/build_html.py      output/<slug> [--thumbnail 경로] [--thumb-link "라벨=URL"]   # result.html (최종)
 python scripts/compose_thumbnail.py output/<slug>   # Canva를 못 쓸 때 대체
 python tests/run_tests.py          # examples/hangang-belt 로 회귀 테스트
 ```

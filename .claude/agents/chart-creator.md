@@ -47,7 +47,7 @@ tools: Read, Write, Bash, Glob, Grep
 ```bash
 python scripts/make_charts.py output/<slug>          # PNG 생성 (PASS만 허용)
 python scripts/insert_charts.py output/<slug>        # final.md 생성
-python scripts/render_html.py output/<slug>          # final.html 생성 (네이버 붙여넣기용)
+python scripts/render_html.py output/<slug>          # final.html 생성 (중간 산출물; 최종 result.html은 썸네일 후 build_html.py가 만든다)
 ```
 4. 생성된 PNG를 Read로 열어 눈으로 확인한다. 라벨 겹침, 한글 깨짐, 잘림, 단위 누락이 있으면 charts.json을 고쳐 다시 만든다.
 

@@ -52,6 +52,24 @@ def main():
     check("render_html: 노랑/빨강/볼드 변환", rc == 0 and "#FFF3A3" in html
           and "#E02020" in html and "<b>" in html and "data:image/png;base64" in html, out)
 
+
+    # 1-b) 최종 결과물 result.html (복사·다운로드 버튼)
+    from PIL import Image
+    Image.new("RGB", (60, 60), (30, 60, 90)).save(d / "thumbnail.png")
+    rc, out = run("build_html.py", d, "--thumb-link", "Canva=https://www.canva.com/d/x")
+    res = d / "result.html"
+    r = res.read_text(encoding="utf-8") if res.exists() else ""
+    check("build_html: result.html 생성", rc == 0 and res.exists(), out)
+    check("build_html: 복사 버튼(네이버용/자리표시/제목)",
+          "본문 복사 (네이버용)" in r and "이미지 자리 표시" in r and "copyTitle" in r, r[:300])
+    check("build_html: 이미지 3개 모두 다운로드 버튼",
+          all(f in r for f in ("thumbnail.png", "chart1.png", "chart2.png"))
+          and r.count("download") >= 3 and "이미지 전체 다운로드" in r)
+    check("build_html: 본문 서식 유지·이미지 내장",
+          "#FFF3A3" in r and "#E02020" in r and "data:image/png;base64" in r)
+    check("build_html: 복사 시 버튼 제거용 no-copy 표시", "no-copy" in r)
+    check("build_html: Canva 링크 포함", "https://www.canva.com/d/x" in r)
+
     # 2) 계산 불일치 탐지
     d = fresh()
     c = json.loads((d / "claims.json").read_text(encoding="utf-8"))
