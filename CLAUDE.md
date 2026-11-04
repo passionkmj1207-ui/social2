@@ -1,0 +1,32 @@
+# social2 — 월급노트 블로그 제작 인프라
+
+경영관리 실무자의 시선으로 경제·부동산 이슈를 데이터로 풀어 쓰는 블로그 "월급노트"(`@월급노트`)의 글 제작 파이프라인이다.
+
+## 워크플로우
+```
+/post <주제>
+  └ writer ──▶ fact-checker ──(PASS)──▶ chart-creator ──▶ thumbnail-designer(Canva)
+        ▲            │
+        └─(FIX/FAIL, 최대 2회)
+```
+- 정의: `.claude/agents/*.md`, 오케스트레이션: `.claude/commands/post.md`
+- 작업 폴더: `output/<slug>/` (git 제외)
+  - `brief.md` → `draft.md` + `claims.json` → `verification.json` → `charts.json` + `charts/*.png` → `final.md`/`final.html` → `thumbnail.json` + `thumbnail.png`
+
+## 규칙
+- 글은 `guidelines/writing-guide.md`를 따른다. 썸네일은 `guidelines/thumbnail-guide.md`.
+- **본문의 모든 수치는 `claims.json`에 기록하고 fact-checker를 통과해야 한다.** 통과하지 못한 수치는 쓰지 않는다.
+- 그래프는 검증을 통과(`PASS`)한 수치로만 만든다.
+- 현재 시점 통계는 반드시 검색으로 확인한다. 기억으로 쓰지 않는다.
+- 커뮤니티 원문은 요약만 하고 닉네임·회사명 등 식별 정보를 쓰지 않는다.
+- 투자·매매 권유 문구는 쓰지 않는다.
+- 이 저장소는 **공개**다. 비밀키, 미발행 초안, 배경 사진 원본(`assets/thumbnail/`)을 커밋하지 않는다.
+
+## 스크립트 (`python3`, matplotlib 필요)
+| 명령 | 역할 |
+|---|---|
+| `python scripts/validate_claims.py output/<slug>` | claims 구조·계산식·문구 존재 검사, 미등록 숫자 경고 |
+| `python scripts/make_charts.py output/<slug>` | charts.json → PNG (검증 PASS만 허용) |
+| `python scripts/insert_charts.py output/<slug>` | draft.md + 그래프 → final.md |
+| `python scripts/render_html.py output/<slug>` | final.md → final.html (서식 표기 변환) |
+| `python tests/run_tests.py` | 예제로 전체 스크립트 회귀 테스트 |

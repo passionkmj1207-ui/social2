@@ -1,0 +1,315 @@
+{
+  "slug": "hangang-belt",
+  "note": "예제 데이터. 2026-11-04 시점에 보도를 교차 확인한 결과를 기록한 것이며, 단일 매체 근거 수치는 PASS_SECONDARY로 표시했다.",
+  "claims": {
+    "c1": {
+      "verdict": "PASS",
+      "checked_value": 0.09,
+      "as_of": "2026-10-26",
+      "sources": [
+        "seoulilbo 22337",
+        "insight 580649",
+        "supple/이투데이"
+      ],
+      "evidence": "부동산원 10월 4주 서울 +0.09%, 3개 매체 일치",
+      "correction": ""
+    },
+    "c2": {
+      "verdict": "PASS",
+      "checked_value": 90,
+      "as_of": "2026-10-26",
+      "sources": [
+        "seoulilbo 22337",
+        "supple 방송 보도"
+      ],
+      "evidence": "90주 연속 상승 2개 매체 일치",
+      "correction": ""
+    },
+    "c3": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": 0.13,
+      "as_of": "2026-10-19",
+      "sources": [
+        "supple/이투데이"
+      ],
+      "evidence": "전주 0.13% 단일 매체",
+      "correction": ""
+    },
+    "c4": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": 0.08,
+      "as_of": "2026-10-26",
+      "sources": [
+        "supple/이투데이"
+      ],
+      "evidence": "한강벨트 5개 구 +0.04~0.08% 단일 매체. 부동산원 원자료 대조 필요",
+      "correction": ""
+    },
+    "c5": {
+      "verdict": "PASS",
+      "checked_value": -0.38,
+      "as_of": "2026-10-26",
+      "sources": [
+        "supple/이투데이",
+        "supple 방송 보도"
+      ],
+      "evidence": "강남구 -0.38% 2개 보도 일치",
+      "correction": ""
+    },
+    "c6": {
+      "verdict": "PASS",
+      "checked_value": -0.35,
+      "as_of": "2026-10-26",
+      "sources": [
+        "supple/이투데이",
+        "supple 방송 보도"
+      ],
+      "evidence": "서초구 -0.35% 2개 보도 일치",
+      "correction": ""
+    },
+    "c7": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": -0.22,
+      "as_of": "2026-10-26",
+      "sources": [
+        "supple/이투데이"
+      ],
+      "evidence": "송파구 -0.22% 단일 매체",
+      "correction": ""
+    },
+    "h1": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": 0.08,
+      "as_of": "2026-10-26",
+      "sources": [
+        "supple/이투데이"
+      ],
+      "evidence": "단일 매체",
+      "correction": ""
+    },
+    "h2": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": 0.05,
+      "as_of": "2026-10-26",
+      "sources": [
+        "supple/이투데이"
+      ],
+      "evidence": "단일 매체",
+      "correction": ""
+    },
+    "h3": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": 0.04,
+      "as_of": "2026-10-26",
+      "sources": [
+        "supple/이투데이"
+      ],
+      "evidence": "단일 매체",
+      "correction": ""
+    },
+    "h4": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": 0.04,
+      "as_of": "2026-10-26",
+      "sources": [
+        "supple/이투데이"
+      ],
+      "evidence": "단일 매체",
+      "correction": ""
+    },
+    "h5": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": 0.04,
+      "as_of": "2026-10-26",
+      "sources": [
+        "supple/이투데이"
+      ],
+      "evidence": "단일 매체",
+      "correction": ""
+    },
+    "c8": {
+      "verdict": "PASS",
+      "checked_value": 34.8,
+      "as_of": "2026-06",
+      "sources": [
+        "supple 방송 보도",
+        "supple/이투데이"
+      ],
+      "evidence": "은마 76㎡ 6월 34억 8천만원 2개 보도 일치",
+      "correction": ""
+    },
+    "c9": {
+      "verdict": "PASS",
+      "checked_value": 31.2,
+      "as_of": "2026-10-02",
+      "sources": [
+        "supple 방송 보도",
+        "supple/이투데이"
+      ],
+      "evidence": "은마 76㎡ 10월 31억 2천만원 2개 보도 일치",
+      "correction": ""
+    },
+    "c10": {
+      "verdict": "PASS",
+      "checked_value": 3.6,
+      "as_of": "2026-10",
+      "sources": [],
+      "evidence": "34.8-31.2=3.6 재계산 일치",
+      "correction": ""
+    },
+    "c11": {
+      "verdict": "PASS",
+      "checked_value": 10.34,
+      "as_of": "2026-10",
+      "sources": [],
+      "evidence": "3.6/34.8*100=10.34, 표기 '약 10%'",
+      "correction": ""
+    },
+    "c12": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": 57001,
+      "as_of": "2026-01-01",
+      "sources": [
+        "재경일보(jkn)"
+      ],
+      "evidence": "아실 집계 단일 매체",
+      "correction": ""
+    },
+    "c13": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": 77451,
+      "as_of": "2026-11-03",
+      "sources": [
+        "재경일보(jkn)",
+        "서울일보(11/2 기준 동일 수치)"
+      ],
+      "evidence": "기준일 차이(11/2, 11/3) 있으나 동일 수치. 아실 원자료 대조 필요",
+      "correction": ""
+    },
+    "c14": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": 35.88,
+      "as_of": "2026-11-03",
+      "sources": [],
+      "evidence": "(77451-57001)/57001=35.88%, 입력값이 SECONDARY",
+      "correction": ""
+    },
+    "c15": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": 144.1,
+      "as_of": "2026-11-03",
+      "sources": [
+        "재경일보(jkn)"
+      ],
+      "evidence": "단일 매체",
+      "correction": ""
+    },
+    "c16": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": 108.0,
+      "as_of": "2026-11-03",
+      "sources": [
+        "재경일보(jkn)"
+      ],
+      "evidence": "단일 매체",
+      "correction": ""
+    },
+    "c17": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": 81.4,
+      "as_of": "2026-11-03",
+      "sources": [
+        "재경일보(jkn)"
+      ],
+      "evidence": "단일 매체",
+      "correction": ""
+    },
+    "c18": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": 8994,
+      "as_of": "2026-05",
+      "sources": [
+        "재경일보(jkn)"
+      ],
+      "evidence": "서울부동산정보광장 인용 단일 매체",
+      "correction": ""
+    },
+    "c19": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": 3431,
+      "as_of": "2026-09",
+      "sources": [
+        "재경일보(jkn)"
+      ],
+      "evidence": "단일 매체",
+      "correction": ""
+    },
+    "c20": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": 2598,
+      "as_of": "2026-11-03",
+      "sources": [
+        "재경일보(jkn)"
+      ],
+      "evidence": "단일 매체, 10월은 신고 진행 중인 잠정치",
+      "correction": ""
+    },
+    "c21": {
+      "verdict": "PASS_SECONDARY",
+      "checked_value": 71.11,
+      "as_of": "2026-11-03",
+      "sources": [],
+      "evidence": "(8994-2598)/8994=71.11%, 입력값이 SECONDARY",
+      "correction": ""
+    },
+    "c22": {
+      "verdict": "PASS",
+      "checked_value": 8.91,
+      "as_of": "2026-10-26",
+      "sources": [
+        "재경일보(jkn)",
+        "리뷰타임스"
+      ],
+      "evidence": "전세 누적 8.91% 2개 매체 일치",
+      "correction": ""
+    },
+    "c23": {
+      "verdict": "PASS",
+      "checked_value": 8.73,
+      "as_of": "2026-10-26",
+      "sources": [
+        "재경일보(jkn)",
+        "리뷰타임스"
+      ],
+      "evidence": "매매 누적 8.73% 2개 매체 일치",
+      "correction": ""
+    },
+    "c25": {
+      "verdict": "PASS",
+      "checked_value": 25,
+      "as_of": "2026-11-04",
+      "sources": [
+        "서울특별시 행정구역 현황"
+      ],
+      "evidence": "서울 자치구 25개(행정구역 상수)",
+      "correction": ""
+    },
+    "c24": {
+      "verdict": "PASS",
+      "checked_value": 8151,
+      "as_of": "2026-11-04",
+      "sources": [
+        "사용자 제공 캡처"
+      ],
+      "evidence": "캡처의 조회 8,151 확인, 본문 '8,000을 넘었다'와 일치",
+      "correction": ""
+    }
+  },
+  "summary": {
+    "PASS": 12,
+    "PASS_SECONDARY": 18,
+    "FIX": 0,
+    "FAIL": 0
+  },
+  "overall": "PASS"
+}

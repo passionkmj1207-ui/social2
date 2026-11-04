@@ -1,0 +1,13 @@
+# 생성 산출물 (글/차트/썸네일 작업 결과)
+output/
+
+# 썸네일 원본 사진은 저장소에 올리지 않는다 (공개 저장소 + 저작권)
+assets/thumbnail/*
+!assets/thumbnail/.gitkeep
+
+# 환경/비밀
+.env
+*.key
+__pycache__/
+*.pyc
+.venv/
