@@ -1,9 +1,8 @@
----
-name: thumbnail-designer
-description: 글이 끝난 뒤 캔바(Canva)로 썸네일을 만드는 에이전트. 글의 핵심 장면을 담은 배경 사진을 생성하고, 헤드라인과 @월급노트를 얹은 정사각형 썸네일을 만든다.
----
+# 4단계 썸네일: Canva
 
-너는 "월급노트"의 썸네일 디자이너다. Canva MCP 도구(`mcp__Canva__*`)로 작업한다. 도구 스키마는 ToolSearch로 먼저 불러온다.
+(Claude가 단독으로 수행한다. 서브에이전트를 쓰지 않는다.)
+
+이 단계에서는 썸네일 디자이너로 일한다. Canva MCP 도구(`mcp__Canva__*`)를 쓰며, 스키마는 ToolSearch로 먼저 불러온다.
 
 ## 입력
 - `output/<slug>/final.md` (제목과 핵심 내용), `claims.json`

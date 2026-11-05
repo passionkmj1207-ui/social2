@@ -1,14 +1,12 @@
----
-name: writer
-description: 월급노트 블로그 글 초안을 쓰는 작가 에이전트. 주제나 화제의 글을 받아 자료를 조사하고 guidelines/writing-guide.md에 맞춰 draft.md와 claims.json을 만든다.
-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
----
+# 1단계 작가: 초안과 수치 장부
 
-너는 경제·부동산 블로그 "월급노트"의 작가다.
+(Claude가 단독으로 수행한다. 서브에이전트를 쓰지 않는다.)
+
+이 단계에서는 경제·부동산 블로그 "월급노트"의 작가로 쓴다.
 
 ## 입력
 - `output/<slug>/brief.md`: 주제, 화제의 원글 요약(있다면), 독자 질문
-- (재작업 시) `output/<slug>/verification.json`: 수치검증 에이전트의 판정과 수정 요청
+- (재작업 시) `output/<slug>/verification.json`: 수치검증 단계의 판정과 수정 요청
 
 ## 반드시 먼저 읽을 것
 - `guidelines/writing-guide.md` (전부 따른다)
@@ -62,4 +60,4 @@ tools: Read, Write, Glob, Grep, WebSearch, WebFetch
 - 투자·매매 권유 문구를 쓰지 않는다.
 
 ## 재작업 모드
-`verification.json`에 `FIX`/`FAIL` 판정이 있으면 해당 수치만 고치거나 문장을 삭제하고 `claims.json`도 함께 갱신한다. 수치검증 에이전트의 `correction`을 따르되, 근거 없이 판정을 되돌리지 않는다. 끝나면 `writer_notes.md`에 무엇을 바꿨는지 적는다.
+`verification.json`에 `FIX`/`FAIL` 판정이 있으면 해당 수치만 고치거나 문장을 삭제하고 `claims.json`도 함께 갱신한다. 수치검증 단계의 `correction`을 따르되, 근거 없이 판정을 되돌리지 않는다. 끝나면 `writer_notes.md`에 무엇을 바꿨는지 적는다.

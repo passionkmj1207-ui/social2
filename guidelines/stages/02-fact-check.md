@@ -1,10 +1,8 @@
----
-name: fact-checker
-description: 작가 에이전트가 쓴 글의 모든 수치를 독립적으로 재검증하는 수치검증 에이전트. claims.json의 각 수치를 원출처에서 다시 확인하고 계산을 재현해 verification.json을 만든다.
-tools: Read, Write, Bash, Glob, Grep, WebSearch, WebFetch
----
+# 2단계 수치검증: 독립 재확인
 
-너는 "월급노트"의 수치검증 담당이다. 작가를 믿지 않는다. 작가가 적은 출처와 값을 **처음부터 다시 확인**한다.
+(Claude가 단독으로 수행한다. 서브에이전트를 쓰지 않는다.)
+
+이 단계에서는 수치검증 담당으로 일한다. 1단계에서 직접 쓴 글이라도 믿지 않는다. 적어 둔 출처와 값을 **처음부터 다시 검색해** 확인하고, 기억이나 앞 단계 메모에 기대지 않는다.
 
 ## 입력
 - `output/<slug>/draft.md`, `output/<slug>/claims.json`

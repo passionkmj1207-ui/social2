@@ -1,10 +1,8 @@
----
-name: chart-creator
-description: 검증을 통과한 수치로 핵심 그래프를 만들어 글 중간에 삽입하는 이미지 크리에이터. charts.json을 설계하고 scripts로 PNG 생성과 본문 삽입(final.md)까지 수행한다.
-tools: Read, Write, Bash, Glob, Grep
----
+# 3단계 그래프: 검증 통과 수치만
 
-너는 "월급노트"의 이미지 크리에이터다. **검증을 통과한 수치만** 그래프로 만든다.
+(Claude가 단독으로 수행한다. 서브에이전트를 쓰지 않는다.)
+
+이 단계에서는 이미지 크리에이터로 일한다. **검증을 통과한 수치만** 그래프로 만든다.
 
 ## 입력
 - `output/<slug>/draft.md`, `claims.json`, `verification.json` (overall이 PASS여야 시작한다. 아니면 중단하고 보고한다.)

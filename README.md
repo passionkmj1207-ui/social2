@@ -1,7 +1,7 @@
 # social2 · 월급노트 블로그 제작 인프라
 
 경제·부동산 이슈를 데이터로 풀어 쓰는 블로그 **월급노트(@월급노트)** 의 글 제작 파이프라인.
-작가 → 수치검증 → 그래프 삽입 → 캔바 썸네일을 에이전트 워크플로우로 묶었다.
+작가 → 수치검증 → 그래프 삽입 → 캔바 썸네일을 하나의 워크플로우로 묶었다. 서브에이전트 없이 Claude가 단독으로 각 단계를 수행한다.
 
 ```
 /post <주제>
@@ -10,17 +10,17 @@
        └── FIX/FAIL ────┘   (최대 2회 재작업)
 ```
 
-| 단계 | 에이전트 | 산출물 (`output/<slug>/`) | 게이트 |
+| 단계 | 절차 문서 | 산출물 (`output/<slug>/`) | 게이트 |
 |---|---|---|---|
-| ① 초안 | `writer` | `draft.md`, `claims.json`, `writer_notes.md` | `validate_claims.py` 오류 0 |
-| ② 검증 | `fact-checker` | `verification.json`, `verification_report.md` | `overall == PASS` |
-| ③ 그래프 | `chart-creator` | `charts.json`, `charts/*.png`, `final.md`, `final.html` | 검증 PASS 수치만 사용 |
-| ④ 썸네일 | `thumbnail-designer` | `thumbnail.json`, `thumbnail.png` | 배경이 글 내용과 맞을 것, 미리보기 확인 후 저장 |
+| ① 초안 | `stages/01-writer.md` | `draft.md`, `claims.json`, `writer_notes.md` | `validate_claims.py` 오류 0 |
+| ② 검증 | `stages/02-fact-check.md` | `verification.json`, `verification_report.md` | `overall == PASS` |
+| ③ 그래프 | `stages/03-charts.md` | `charts.json`, `charts/*.png`, `final.md`, `final.html` | 검증 PASS 수치만 사용 |
+| ④ 썸네일 | `stages/04-thumbnail.md` | `thumbnail.json`, `thumbnail.png` | 배경이 글 내용과 맞을 것, 미리보기 확인 후 저장 |
 | ⑤ 최종 | `build_html.py` | **`result.html`** (최종 결과물) | 제목·썸네일·본문·그래프를 한 파일로 |
 
 ## 핵심 설계
 - **수치 장부(`claims.json`)**: 본문의 모든 숫자를 출처·기준 시점과 함께 기록한다. 직접 계산한 값은 `formula`로 남기고 스크립트가 재계산해 대조한다.
-- **독립 검증**: 수치검증 에이전트는 작가의 출처를 믿지 않고 원출처에서 다시 확인한다. 판정은 `PASS`(원자료 또는 독립 2개 출처) / `PASS_SECONDARY`(단일 매체) / `FIX` / `FAIL`.
+- **독립 검증**: 수치검증 단계에서는 작가 단계의 출처를 믿지 않고 원출처에서 다시 확인한다. 판정은 `PASS`(원자료 또는 독립 2개 출처) / `PASS_SECONDARY`(단일 매체) / `FIX` / `FAIL`.
 - **그래프 게이트**: 그래프의 모든 점은 `claim_id`에 연결되고, 값이 장부와 다르거나 판정이 `PASS`가 아니면 생성이 중단된다(`--allow-secondary`로만 단일 매체 수치 허용).
 - **서식 표기**: `==노랑==`, `[빨강: …]`, `**볼드**` → `md_render.py`가 인라인 스타일로 변환한다. **최종 결과물은 `result.html` 한 파일**이며, [본문 복사] 버튼으로 네이버 블로그에 그대로 붙여넣고, 이미지(썸네일·그래프)마다 [다운로드] 버튼이 있다.
 
@@ -30,7 +30,7 @@
 ```
 /post 한강벨트 집값 폭락설, 사실일까
 ```
-`.claude/commands/post.md` 가 4개 서브에이전트를 순서대로 호출한다.
+`.claude/commands/post.md` 가 4개 단계를 순서대로 진행한다(Claude 단독 수행, 단계별 절차는 `guidelines/stages/`).
 
 ### 스크립트만 따로
 ```bash
@@ -51,9 +51,8 @@ python tests/run_tests.py          # examples/hangang-belt 로 회귀 테스트
 
 ## 폴더
 ```
-.claude/agents/      writer · fact-checker · chart-creator · thumbnail-designer
 .claude/commands/    post.md (워크플로우)
-guidelines/          writing-guide.md (v3) · thumbnail-guide.md
+guidelines/          writing-guide.md (v3) · thumbnail-guide.md · stages/ (단계별 절차)
 config/brand.json    계정명, 썸네일·차트 규격
 scripts/             검증·차트·삽입·HTML 변환
 examples/            hangang-belt (예제 입력)

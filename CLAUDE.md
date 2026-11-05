@@ -5,11 +5,12 @@
 ## 워크플로우
 ```
 /post <주제>
-  └ writer ──▶ fact-checker ──(PASS)──▶ chart-creator ──▶ thumbnail-designer(Canva)
+  └ 작가 ──▶ 수치검증 ──(PASS)──▶ 그래프 ──▶ 썸네일(Canva)   (전부 Claude 단독 수행)
         ▲            │
         └─(FIX/FAIL, 최대 2회)
 ```
-- 정의: `.claude/agents/*.md`, 오케스트레이션: `.claude/commands/post.md`
+- **서브에이전트는 쓰지 않는다. 모든 단계를 Claude가 단독으로 직접 수행한다.**
+- 단계별 절차: `guidelines/stages/*.md`, 오케스트레이션: `.claude/commands/post.md`
 - 작업 폴더: `output/<slug>/` (git 제외)
   - `brief.md` → `draft.md` + `claims.json` → `verification.json` → `charts.json` + `charts/*.png` → `final.md`/`final.html` → `thumbnail.json` + `thumbnail.png` → **`result.html`(최종 결과물)**
 
