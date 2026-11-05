@@ -128,6 +128,9 @@ def main():
                 continue
             if tail.startswith("주") and WEEK_OF_MONTH.search(line[:m.start()]):
                 continue
+            # 결산 분기 표기(1~4분기)는 수치가 아니므로 제외. 12분기 같은 값은 계속 검사한다.
+            if tail.startswith("분기") and m.group() in ("1", "2", "3", "4"):
+                continue
             if not any(a <= s and e <= b for a, b in spans):
                 warnings.append(f"장부에 없는 숫자: '{m.group()}' → …{line.strip()[:50]}…")
 

@@ -97,6 +97,15 @@ def main():
     rc, out = run("validate_claims.py", d, "--strict")
     check("validate: strict면 오류", rc == 1, out)
 
+
+    # 4) 1~4분기 표기는 제외, 12분기 같은 수치는 검사
+    d = fresh()
+    dp = d / "draft.md"
+    dp.write_text(dp.read_text(encoding="utf-8") + "\n\n3분기 실적이 12분기 만에 최고였다.\n", encoding="utf-8")
+    rc, out = run("validate_claims.py", d)
+    check("validate: 1~4분기 표기는 경고 없음, 12분기는 경고",
+          "'3'" not in out and "'12'" in out, out)
+
     # 5) 검증 실패 claim은 그래프 차단
     d = fresh()
     v = json.loads((d / "verification.json").read_text(encoding="utf-8"))
